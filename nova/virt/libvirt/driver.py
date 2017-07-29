@@ -4131,9 +4131,9 @@ class LibvirtDriver(driver.ComputeDriver):
                 consolelog = vconfig.LibvirtConfigGuestConsole()
                 consolelog.target_type = "sclplm"
             else:
-                consolelog = vconfig.LibvirtConfigGuestSerial()
-            consolelog.type = "file"
-            consolelog.source_path = self._get_console_log_path(instance)
+                consolelog = vconfig.LibvirtConfigGuestConsole()
+            consolelog.type = "pty"
+            consolelog.target_port = "0"
             guest.add_device(consolelog)
 
     def _add_video_driver(self, guest, image_meta, flavor):
